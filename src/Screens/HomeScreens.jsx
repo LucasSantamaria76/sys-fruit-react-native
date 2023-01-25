@@ -1,6 +1,6 @@
 import { VStack, useToast } from 'native-base';
 import { useEffect, useState } from 'react';
-import { Display, Keyboard, ModalSale, NavbarTypeOfSales } from '../components';
+import { Display, Keyboard, ModalConfirm, NavbarTypeOfSales } from '../components';
 import { db, saveAmount, signIn } from '../firebase/firebase-utils';
 import { doc, onSnapshot } from 'firebase/firestore';
 import dayjs from 'dayjs';
@@ -41,7 +41,7 @@ export const HomeScreens = () => {
     toast.show({
       title: 'Ventas agregada',
       placement: 'top',
-      variant: 'subtle',
+
       duration: 800,
     });
     onModalClose();
@@ -57,11 +57,11 @@ export const HomeScreens = () => {
       <Display amount={amount} />
       <Keyboard setAmount={setAmount} />
       <NavbarTypeOfSales onPress={onPaymentClick} />
-      <ModalSale
-        handleSaveAmount={handleSaveAmount}
+      <ModalConfirm
+        acceptModal={handleSaveAmount}
         modalVisible={modalVisible}
         onModalClose={onModalClose}
-        typeOfPayment={typeOfPayment}
+        msg={`Agregar venta de $${amount}.00 con ${typeOfPayment}`}
       />
     </VStack>
   );

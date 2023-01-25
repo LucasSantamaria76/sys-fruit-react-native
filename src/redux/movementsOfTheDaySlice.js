@@ -11,12 +11,17 @@ const movementsOfTheDaySlice = createSlice({
       state.Sales = payload.Sales;
     },
     setSale(state, { payload }) {
-      //Object.keys(payload).forEach((key) => state.sales.push({ [key]: payload[key] }));
       state.Sales.push(payload);
       saveAmount(state);
+    },
+    deleteSale(state, { payload }) {
+      const auxList = state.Sales.filter((sale) => sale.hour !== payload);
+      state.Sales = auxList;
+      saveAmount(state);
+      return state;
     },
   },
 });
 
-export const { getMovementsOfTheDay, setSale } = movementsOfTheDaySlice.actions;
+export const { deleteSale, getMovementsOfTheDay, setSale } = movementsOfTheDaySlice.actions;
 export default movementsOfTheDaySlice.reducer;

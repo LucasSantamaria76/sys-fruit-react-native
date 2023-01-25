@@ -1,8 +1,4 @@
 import { Center, HStack, Image, Pressable } from 'native-base';
-import mercadoPago from '../../assets/mercadopago.png';
-import cuentaDNI from '../../assets/Cuenta_dni.png';
-import creditCard from '../../assets/CreditCard.png';
-import cash from '../../assets/cash.png';
 import { typeOfSales } from '../constants';
 
 const NavbarTypeOfSales = ({ onPress }) => {
@@ -28,7 +24,7 @@ const NavbarTypeOfSales = ({ onPress }) => {
                 ],
               }}
             >
-              <Image source={mercadoPago} h={'100%'} w={'100%'} alt='Mercado pago'></Image>
+              <Image source={require('../../assets/mercadopago.png')} h={'100%'} w={'100%'} alt='Mercado pago'></Image>
             </Center>
           );
         }}
@@ -53,7 +49,7 @@ const NavbarTypeOfSales = ({ onPress }) => {
                 ],
               }}
             >
-              <Image source={cuentaDNI} h={'100%'} w={'100%'} alt='Cuenta DNI'></Image>
+              <Image source={require('../../assets/Cuenta_dni.png')} h={'100%'} w={'100%'} alt='Cuenta DNI'></Image>
             </Center>
           );
         }}
@@ -77,7 +73,12 @@ const NavbarTypeOfSales = ({ onPress }) => {
                 ],
               }}
             >
-              <Image source={creditCard} h={'100%'} w={'100%'} alt='Tarjeta de crédito'></Image>
+              <Image
+                source={require('../../assets/CreditCard.png')}
+                h={'100%'}
+                w={'100%'}
+                alt='Tarjeta de crédito'
+              ></Image>
             </Center>
           );
         }}
@@ -101,7 +102,7 @@ const NavbarTypeOfSales = ({ onPress }) => {
                 ],
               }}
             >
-              <Image source={cash} h={'100%'} w={'100%'} alt='Efectivo'></Image>
+              <Image source={require('../../assets/cash.png')} h={'100%'} w={'100%'} alt='Efectivo'></Image>
             </Center>
           );
         }}

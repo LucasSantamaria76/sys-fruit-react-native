@@ -7,26 +7,26 @@ const styles = {
   },
 };
 
-const ModalSale = ({ handleSaveAmount, modalVisible, onModalClose, typeOfPayment }) => {
+const ModalConfirm = ({ acceptModal, modalVisible, onModalClose, msg }) => {
   return (
     <Modal isOpen={modalVisible} onClose={onModalClose} avoidKeyboard size='lg' safeAreaTop={true}>
       <Modal.Content {...styles.center}>
         <Modal.CloseButton />
         <Modal.Body>
           <Text fontSize='2xl' bold mt={8}>
-            Agregar venta en {typeOfPayment}
+            {msg}
           </Text>
         </Modal.Body>
         <Modal.Footer>
           <Button flex='1' onPress={onModalClose} variant='subtle' colorScheme='blue' mr={4}>
-            Cancelar
+            No
           </Button>
-          <Button flex='1' onPress={handleSaveAmount}>
-            Agregar
+          <Button flex='1' onPress={acceptModal}>
+            Si
           </Button>
         </Modal.Footer>
       </Modal.Content>
     </Modal>
   );
 };
-export default ModalSale;
+export default ModalConfirm;
