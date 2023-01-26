@@ -1,14 +1,15 @@
-import { Avatar, Box, Heading, HStack, VStack, Text, Spacer, Center, Pressable } from 'native-base';
+import { Box, Heading, HStack, VStack, Text, Spacer, Center, Pressable, Image } from 'native-base';
 import { EvilIcons } from '@expo/vector-icons';
 import { Alert, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteSale } from '../redux/movementsOfTheDaySlice';
-import mercadoPago from '../../assets/mercadopago.png';
-import cuentaDNI from '../../assets/Cuenta_dni.png';
-import creditCard from '../../assets/CreditCard.png';
-import cash from '../../assets/cash.png';
+import mercadoPago from '../../assets/MP.png';
+import cuentaDNI from '../../assets/CDNI.png';
+import creditCard from '../../assets/CARD.png';
+import cash from '../../assets/CASH.png';
 import { useState } from 'react';
 import { ModalConfirm } from '../components';
+import { typeOfSales } from '../constants';
 
 const typeOfPayment = (type) => {
   switch (type) {
@@ -71,7 +72,7 @@ const ListSales = () => {
         renderItem={({ item }) => (
           <Box borderBottomWidth='.5' borderColor='muted.800' py='1'>
             <HStack space={[2, 3]} justifyContent='space-around'>
-              <Avatar size='48px' source={typeOfPayment(item.typeOfPayment)} bg='transparent' />
+              <Image size='xs' resizeMode='contain' source={typeOfPayment(item.typeOfPayment)} alt='typeOfPayment' />
               <Center>
                 <Text fontSize='md' color='coolGray.800'>{`$ ${item.amount}`}</Text>
               </Center>

@@ -1,27 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { saveAmount } from '../firebase/firebase-utils';
+import { saveMovements } from '../firebase/firebase-utils';
 
 const movementsOfTheDaySlice = createSlice({
   name: 'movementsOfTheDay',
   initialState: {
     Sales: [],
+    extractions: [],
   },
   reducers: {
     getMovementsOfTheDay(state, { payload }) {
       state.Sales = payload.Sales;
+      state.extractions = payload.extractions;
     },
     setSale(state, { payload }) {
       state.Sales.push(payload);
-      saveAmount(state);
+      saveMovements(state);
     },
     deleteSale(state, { payload }) {
       const auxList = state.Sales.filter((sale) => sale.hour !== payload);
       state.Sales = auxList;
-      saveAmount(state);
+      saveMovements(state);
       return state;
+    },
+    setExtractions(state, { payload }) {
+      state.extractions.push(payload);
+      saveMovements(state);
     },
   },
 });
 
-export const { deleteSale, getMovementsOfTheDay, setSale } = movementsOfTheDaySlice.actions;
+export const { deleteSale, getMovementsOfTheDay, setExtractions, setSale } = movementsOfTheDaySlice.actions;
 export default movementsOfTheDaySlice.reducer;

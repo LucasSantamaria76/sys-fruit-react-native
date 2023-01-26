@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Admin, HomeScreens, ListSales, Summary } from '../Screens';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { HomeScreens, ListSales, MerchandisePayments, Summary } from '../Screens';
 import { FontAwesome } from '@expo/vector-icons';
+import AdminStack from './AdminStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,10 +13,10 @@ const MainTabs = () => {
         tabBarIcon: ({ color, size }) => {
           let iconName;
 
-          if (route.name === 'Sales') iconName = 'calculator';
-          if (route.name === 'ListSales') iconName = 'list';
-          if (route.name === 'Summary') iconName = 'list-alt';
-          if (route.name === 'Admin') iconName = 'bars';
+          if (route.name === 'sales') iconName = 'calculator';
+          if (route.name === 'listSales') iconName = 'list';
+          if (route.name === 'extractions') iconName = 'share-square-o';
+          if (route.name === 'adminStack') iconName = 'ellipsis-h';
           return <FontAwesome name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#80cbc4',
@@ -25,10 +25,10 @@ const MainTabs = () => {
         headerTitleAlign: 'center',
       })}
     >
-      <Tab.Screen name='Sales' component={HomeScreens} options={{ title: 'Ventas' }} />
-      <Tab.Screen name='ListSales' component={ListSales} options={{ title: 'Listado de ventas' }} />
-      <Tab.Screen name='Summary' component={Summary} options={{ title: 'Resumen' }} />
-      <Tab.Screen name='Admin' component={Admin} options={{ title: 'Administración' }} />
+      <Tab.Screen name='sales' component={HomeScreens} options={{ title: 'Ventas' }} />
+      <Tab.Screen name='listSales' component={ListSales} options={{ title: 'Listado de ventas' }} />
+      <Tab.Screen name='extractions' component={MerchandisePayments} options={{ title: 'Pagos' }} />
+      <Tab.Screen name='adminStack' component={AdminStack} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 };

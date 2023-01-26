@@ -11,7 +11,7 @@ const app = initializeApp(firebaseConfig);
 // FireStore => almacenamiento
 export const db = getFirestore(app);
 
-export const saveAmount = async (data) => {
+export const saveMovements = async (data) => {
   const docReference = doc(db, `movements of the day/${dayjs().format('DD-MM-YYYY')}`);
 
   try {

@@ -30,7 +30,7 @@ const Keyboard = ({ setAmount }) => {
                   ],
                 }}
               >
-                <Heading color='coolGray.400' fontWeight='medium' fontSize='6xl'>
+                <Heading color='coolGray.400' fontWeight='medium' fontSize={'5xl'}>
                   {item}
                 </Heading>
               </Center>
