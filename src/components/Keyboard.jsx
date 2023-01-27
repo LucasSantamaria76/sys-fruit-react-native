@@ -1,9 +1,15 @@
 import { Center, Flex, Pressable, Heading } from 'native-base';
 import { keys } from '../constants';
 
-const Keyboard = ({ setAmount }) => {
+const Keyboard = ({ setAmount, limit }) => {
   const handleKeys = (key) => {
-    !isNaN(key) && setAmount((prev) => `${prev}${key}`);
+    !isNaN(key) &&
+      setAmount((prev) => {
+        if (key === '0' && !prev.length) return prev;
+        if (prev.length < limit) {
+          return `${prev}${key}`;
+        } else return prev;
+      });
     key === '⌫' && setAmount((prev) => prev.slice(0, -1));
     key === '🗑️' && setAmount('');
   };
@@ -19,7 +25,7 @@ const Keyboard = ({ setAmount }) => {
                 minH={'25%'}
                 borderWidth='1'
                 borderColor='coolGray.300'
-                shadow='3'
+                shadow={isPressed ? '0' : '3'}
                 bg={isPressed ? 'coolGray.200' : 'coolGray.100'}
                 rounded='8'
                 style={{
@@ -30,7 +36,7 @@ const Keyboard = ({ setAmount }) => {
                   ],
                 }}
               >
-                <Heading color='coolGray.400' fontWeight='medium' fontSize={'5xl'}>
+                <Heading color='coolGray.400' fontWeight='medium' fontSize={['5xl', '7xl']}>
                   {item}
                 </Heading>
               </Center>

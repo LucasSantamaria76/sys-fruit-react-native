@@ -11,31 +11,14 @@ const app = initializeApp(firebaseConfig);
 // FireStore => almacenamiento
 export const db = getFirestore(app);
 
-export const saveMovements = async (data) => {
-  const docReference = doc(db, `movements of the day/${dayjs().format('DD-MM-YYYY')}`);
+export const saveMovements = async (data, day) => {
+  const docReference = doc(db, `movements of the day/${day}`);
 
   try {
     await setDoc(docReference, data);
   } catch (error) {
     console.log(error);
   }
-
-  /* const snapshot = await getDoc(docReference);
-
-  if (!snapshot.exists()) {
-    try {
-      await setDoc(docReference, data);
-    } catch (error) {
-      console.log({ error });
-    }
-  } else {
-    try {
-      await updateDoc(docReference, data);
-    } catch (error) {
-      console.log({ error });
-    }
-  }
- */
 };
 
 export const getSales = async (typeOp) => {

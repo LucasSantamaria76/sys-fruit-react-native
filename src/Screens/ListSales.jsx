@@ -1,6 +1,6 @@
 import { Box, Heading, HStack, VStack, Text, Spacer, Center, Pressable, Image } from 'native-base';
 import { EvilIcons } from '@expo/vector-icons';
-import { Alert, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteSale } from '../redux/movementsOfTheDaySlice';
 import mercadoPago from '../../assets/MP.png';
@@ -30,7 +30,7 @@ const typeOfPayment = (type) => {
 const ListSales = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [saleToDelete, setSaleToDelete] = useState(null);
-  const { Sales } = useSelector((state) => state.movementsOfTheDay);
+  const { sales } = useSelector((state) => state.movementsOfTheDay);
   const dispatch = useDispatch();
 
   const handleDeleteSale = (sale) => {
@@ -68,7 +68,7 @@ const ListSales = () => {
         </HStack>
       </Box>
       <FlatList
-        data={Sales}
+        data={sales}
         renderItem={({ item }) => (
           <Box borderBottomWidth='.5' borderColor='muted.800' py='1'>
             <HStack space={[2, 3]} justifyContent='space-around'>
@@ -98,7 +98,7 @@ const ListSales = () => {
                           ],
                         }}
                       >
-                        <EvilIcons name='trash' size={40} color='#900' />
+                        <EvilIcons name='trash' size={30} color='#900' />
                       </Center>
                     );
                   }}
@@ -113,7 +113,7 @@ const ListSales = () => {
         acceptModal={deleteConfirmed}
         modalVisible={modalVisible}
         onModalClose={onModalClose}
-        msg={`Eliminar venta de $${saleToDelete && saleToDelete.amount}.00 con ${
+        msg={`Eliminar venta de $${saleToDelete && saleToDelete.amount} con ${
           saleToDelete && saleToDelete.typeOfPayment
         }`}
       />

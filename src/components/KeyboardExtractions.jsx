@@ -12,10 +12,11 @@ const KeyboardExtractions = ({ onPress }) => {
             uri = require(`../../assets/carbon.png`);
             item.id === 2 && (uri = require(`../../assets/papas.png`));
             item.id === 3 && (uri = require(`../../assets/huevos.png`));
-            item.id === 4 && (uri = require(`../../assets/bolsitas.png`));
-            item.id === 5 && (uri = require(`../../assets/condimentos.png`));
-            item.id === 6 && (uri = require(`../../assets/Empleados.png`));
-            item.id === 7 && (uri = require(`../../assets/Varios.png`));
+            item.id === 4 && (uri = require(`../../assets/Verduras.png`));
+            item.id === 5 && (uri = require(`../../assets/bolsitas.png`));
+            item.id === 6 && (uri = require(`../../assets/condimentos.png`));
+            item.id === 7 && (uri = require(`../../assets/Empleados.png`));
+            item.id === 8 && (uri = require(`../../assets/Varios.png`));
             return (
               <Center
                 minW={'25%'}

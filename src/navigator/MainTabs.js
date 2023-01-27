@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreens, ListSales, MerchandisePayments, Summary } from '../Screens';
 import { FontAwesome } from '@expo/vector-icons';
 import AdminStack from './AdminStack';
+import { BtnCashChange } from '../components';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +16,7 @@ const MainTabs = () => {
 
           if (route.name === 'sales') iconName = 'calculator';
           if (route.name === 'listSales') iconName = 'list';
-          if (route.name === 'extractions') iconName = 'share-square-o';
+          if (route.name === 'extractions') iconName = 'money';
           if (route.name === 'adminStack') iconName = 'ellipsis-h';
           return <FontAwesome name={iconName} size={size} color={color} />;
         },
@@ -25,10 +26,17 @@ const MainTabs = () => {
         headerTitleAlign: 'center',
       })}
     >
-      <Tab.Screen name='sales' component={HomeScreens} options={{ title: 'Ventas' }} />
+      <Tab.Screen
+        name='sales'
+        component={HomeScreens}
+        options={{
+          title: 'Ventas',
+          headerRight: () => <BtnCashChange />,
+        }}
+      />
       <Tab.Screen name='listSales' component={ListSales} options={{ title: 'Listado de ventas' }} />
       <Tab.Screen name='extractions' component={MerchandisePayments} options={{ title: 'Pagos' }} />
-      <Tab.Screen name='adminStack' component={AdminStack} options={{ headerShown: false }} />
+      <Tab.Screen name='adminStack' component={AdminStack} options={{ headerShown: false, title: 'Administración' }} />
     </Tab.Navigator>
   );
 };

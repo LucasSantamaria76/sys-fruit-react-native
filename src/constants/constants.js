@@ -5,14 +5,16 @@ export const KeysExtractions = [
   { id: 1, name: 'Leña y Carbón' },
   { id: 2, name: 'Bolsas de papa' },
   { id: 3, name: 'Huevos' },
-  { id: 4, name: 'Bolsitas' },
-  { id: 5, name: 'Condimentos' },
-  { id: 6, name: 'Empleados' },
-  { id: 7, name: 'Varios' },
+  { id: 4, name: 'Verduras' },
+  { id: 5, name: 'Bolsitas' },
+  { id: 6, name: 'Condimentos' },
+  { id: 7, name: 'Empleados' },
+  { id: 8, name: 'Varios' },
 ];
 
 export const KeysAdmin = [
   { id: 1, name: 'Usuarios', nameStack: 'users' },
   { id: 2, name: 'Resumen del día', nameStack: 'summary' },
   { id: 3, name: 'Retiro de efectivo', nameStack: 'cashWithdrawals' },
+  { id: 4, name: 'Cambiar fecha', nameStack: 'changeDate' },
 ];

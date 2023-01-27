@@ -30,7 +30,7 @@ const NavbarTypeOfSales = ({ onPress }) => {
                   ],
                 }}
               >
-                <Image size='md' source={uri} resizeMode='contain' alt={key} />
+                <Image size={['16', '32']} source={uri} resizeMode='contain' alt={key} />
               </Center>
             );
           }}
