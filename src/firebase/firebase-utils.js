@@ -4,7 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth/react-native';
 import { doc, getDoc, getFirestore, setDoc, updateDoc } from 'firebase/firestore';
 import { firebaseConfig } from './firebaseConfig';
-import dayjs from 'dayjs';
 
 const app = initializeApp(firebaseConfig);
 
@@ -21,13 +20,20 @@ export const saveMovements = async (data, day) => {
   }
 };
 
-export const getSales = async (typeOp) => {
-  const docRef = doc(db, typeOp, dayjs().format('DD-MM-YYYY'));
+export const getMovements = async (day) => {
+  const docRef = doc(db, 'movements of the day', day);
   const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) return docSnap.data();
+  if (!docSnap.exists())
+    setDoc(docRef, {
+      sales: [],
+      extractions: [],
+      cashWithdrawals: [],
+      cashChange: 0,
+      cashAvailable: 0,
+    });
 
-  await setDoc(docRef, {});
+  return docSnap.data();
 };
 
 // Auth => autenticación (login, registro, etc)

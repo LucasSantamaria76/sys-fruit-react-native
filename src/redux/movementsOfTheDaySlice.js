@@ -13,12 +13,18 @@ const movementsOfTheDaySlice = createSlice({
     currentDay: dayjs().format('DD-MM-YYYY'),
   },
   reducers: {
+    setCurrentDay(state, { payload }) {
+      state.currentDay = payload;
+
+      return state;
+    },
     getMovementsOfTheDay(state, { payload }) {
       if (!payload) {
         saveMovements(state, state.currentDay);
       } else {
         state.sales = payload.sales;
         state.extractions = payload.extractions;
+        state.cashWithdrawals = payload.cashWithdrawals;
         state.cashChange = payload.cashChange;
         state.cashAvailable = payload.cashAvailable;
       }
@@ -55,6 +61,13 @@ const movementsOfTheDaySlice = createSlice({
   },
 });
 
-export const { deleteSale, getMovementsOfTheDay, setCashChange, setCashWithdrawals, setExtractions, setSale } =
-  movementsOfTheDaySlice.actions;
+export const {
+  deleteSale,
+  getMovementsOfTheDay,
+  setCashChange,
+  setCashWithdrawals,
+  setCurrentDay,
+  setExtractions,
+  setSale,
+} = movementsOfTheDaySlice.actions;
 export default movementsOfTheDaySlice.reducer;

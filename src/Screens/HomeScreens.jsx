@@ -1,10 +1,10 @@
 import { VStack, useToast, Box, Text } from 'native-base';
 import { useEffect, useState } from 'react';
-import { Display, Keyboard, ModalConfirm, NavbarTypeOfSales } from '../components';
+import { CurrentDay, Display, Keyboard, ModalConfirm, NavbarTypeOfSales } from '../components';
 import { db, saveAmount, signIn } from '../firebase/firebase-utils';
 import { doc, onSnapshot } from 'firebase/firestore';
 import dayjs from 'dayjs';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getMovementsOfTheDay, setSale } from '../redux/movementsOfTheDaySlice';
 
 export const HomeScreens = () => {
@@ -12,6 +12,7 @@ export const HomeScreens = () => {
   const [amount, setAmount] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [typeOfPayment, setTypeOfPayment] = useState(null);
+  const { currentDay } = useSelector((state) => state.movementsOfTheDay);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,12 +22,12 @@ export const HomeScreens = () => {
   }, []);
 
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, 'movements of the day', dayjs().format('DD-MM-YYYY')), (doc) => {
+    const unsub = onSnapshot(doc(db, 'movements of the day', currentDay), (doc) => {
       dispatch(getMovementsOfTheDay(doc.data()));
     });
 
     return () => unsub();
-  }, []);
+  }, [currentDay]);
 
   const onModalClose = (modal) => {
     setTypeOfPayment(null);
@@ -69,8 +70,9 @@ export const HomeScreens = () => {
 
   return (
     <VStack flex={1} space='4' p={4}>
+      <CurrentDay />
       <Display amount={amount} />
-      <Keyboard setAmount={setAmount} limit={8} />
+      <Keyboard setAmount={setAmount} limit={10} />
       <NavbarTypeOfSales onPress={onPaymentClick} />
       <ModalConfirm
         acceptModal={handleSaveAmount}

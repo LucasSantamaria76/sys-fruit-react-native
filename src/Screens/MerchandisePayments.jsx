@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Box, Text, useToast, VStack } from 'native-base';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Display, Keyboard, KeyboardExtractions } from '../components';
+import { CurrentDay, Display, Keyboard, KeyboardExtractions } from '../components';
 import { setExtractions } from '../redux/movementsOfTheDaySlice';
 import { KeysExtractions } from './../constants';
 
@@ -52,8 +52,9 @@ const MerchandisePayments = () => {
 
   return (
     <VStack flex={1} space='2' p={4}>
+      <CurrentDay />
       <Display amount={amount} />
-      <Keyboard setAmount={setAmount} />
+      <Keyboard setAmount={setAmount} limit={10} />
       <KeyboardExtractions onPress={handlePayment} />
     </VStack>
   );

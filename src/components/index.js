@@ -7,3 +7,4 @@ export { default as SummarySales } from './SummarySales';
 export { default as SummaryExtractions } from './SummaryExtractions';
 export { default as SummaryCashWithdrawals } from './SummaryCashWithdrawals';
 export { default as BtnCashChange } from './BtnCashChange';
+export { default as CurrentDay } from './CurrentDay';
