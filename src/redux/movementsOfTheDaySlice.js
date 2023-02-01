@@ -1,20 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
+import { initialState } from '../constants';
 import { saveMovements } from '../firebase/firebase-utils';
 
 const movementsOfTheDaySlice = createSlice({
   name: 'movementsOfTheDay',
-  initialState: {
-    sales: [],
-    extractions: [],
-    cashWithdrawals: [],
-    cashChange: 0,
-    cashAvailable: 0,
-    currentDay: dayjs().format('DD-MM-YYYY'),
-  },
+  initialState: { ...initialState, currentDay: dayjs().format('DD-MM-YYYY'), monthAndYear: dayjs().format('MM-YYYY') },
   reducers: {
     setCurrentDay(state, { payload }) {
       state.currentDay = payload;
+      state.monthAndYear = payload.slice(-7);
 
       return state;
     },

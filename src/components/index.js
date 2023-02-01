@@ -8,3 +8,5 @@ export { default as SummaryExtractions } from './SummaryExtractions';
 export { default as SummaryCashWithdrawals } from './SummaryCashWithdrawals';
 export { default as BtnCashChange } from './BtnCashChange';
 export { default as CurrentDay } from './CurrentDay';
+export { default as MonthlySummaryDetails } from './MonthlySummaryDetails';
+export { default as DetailsSalesOfMonth } from './DetailsSalesOfMonth';

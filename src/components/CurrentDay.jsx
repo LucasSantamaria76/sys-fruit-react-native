@@ -26,13 +26,13 @@ dayjs.updateLocale('en', {
   weekdays,
 });
 
-const CurrentDay = () => {
+const CurrentDay = ({ msg }) => {
   const { currentDay } = useSelector((state) => state.movementsOfTheDay);
   const date = currentDay.split('-').reverse().join('-');
   return (
-    <Center borderColor='white' borderWidth={1} p={1} bgColor='primary.200' borderRadius={5} shadow={5}>
-      <Text color='white' fontSize='md'>
-        {dayjs(date).format('dddd, DD MMMM YYYY')}
+    <Center>
+      <Text fontSize={15} color={'white'} fontWeight='bold'>
+        {msg && msg} {dayjs(date).format('dddd, DD MMMM YYYY')}
       </Text>
     </Center>
   );

@@ -1,6 +1,6 @@
 import { VStack, useToast, Box, Text } from 'native-base';
 import { useEffect, useState } from 'react';
-import { CurrentDay, Display, Keyboard, ModalConfirm, NavbarTypeOfSales } from '../components';
+import { Display, Keyboard, ModalConfirm, NavbarTypeOfSales } from '../components';
 import { db, saveAmount, signIn } from '../firebase/firebase-utils';
 import { doc, onSnapshot } from 'firebase/firestore';
 import dayjs from 'dayjs';
@@ -70,7 +70,6 @@ export const HomeScreens = () => {
 
   return (
     <VStack flex={1} space='4' p={4}>
-      <CurrentDay />
       <Display amount={amount} />
       <Keyboard setAmount={setAmount} limit={10} />
       <NavbarTypeOfSales onPress={onPaymentClick} />

@@ -38,7 +38,7 @@ const BtnCashChange = () => {
 
   return (
     <>
-      <Pressable onPress={() => setShowModal(true)} mr={6}>
+      <Pressable onPress={() => setShowModal(true)} mr={4} mb={1}>
         {({ isPressed }) => {
           return (
             <Center
@@ -57,8 +57,8 @@ const BtnCashChange = () => {
                 ],
               }}
             >
-              <MaterialCommunityIcons name='cash-check' size={25} color='#226e24' />
-              <Text fontSize={8}>Cambio</Text>
+              <MaterialCommunityIcons name='cash' size={24} color='#226e24' />
+              <Text fontSize={9}>Cambio</Text>
             </Center>
           );
         }}

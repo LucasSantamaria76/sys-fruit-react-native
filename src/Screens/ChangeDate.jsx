@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { getMovementsOfTheDay, setCurrentDay } from '../redux/movementsOfTheDaySlice';
 import { getMovements } from '../firebase/firebase-utils';
 import dayjs from 'dayjs';
+import { CurrentDay } from '../components';
 
 const ChangeDate = () => {
   const [selectedDate, setSelectedDate] = useState('');
@@ -48,7 +49,9 @@ const ChangeDate = () => {
 
   return (
     <Center mt={10}>
+      <CurrentDay />
       <DatePicker
+        style={{ marginTop: 15 }}
         mode='calendar'
         onSelectedChange={(date) => handleChangeDate(date)}
         options={{

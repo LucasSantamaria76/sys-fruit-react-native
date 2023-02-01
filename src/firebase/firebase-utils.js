@@ -2,8 +2,9 @@ import { initializeApp } from 'firebase/app';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth/react-native';
-import { doc, getDoc, getFirestore, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, updateDoc, where } from 'firebase/firestore';
 import { firebaseConfig } from './firebaseConfig';
+import { initialState } from '../constants';
 
 const app = initializeApp(firebaseConfig);
 
@@ -26,14 +27,23 @@ export const getMovements = async (day) => {
 
   if (!docSnap.exists())
     setDoc(docRef, {
-      sales: [],
-      extractions: [],
-      cashWithdrawals: [],
-      cashChange: 0,
-      cashAvailable: 0,
+      ...initialState,
+      currentDay: day,
+      monthAndYear: day.slice(-7),
     });
 
   return docSnap.data();
+};
+
+export const getDocuments = async (date) => {
+  const q = query(collection(db, 'movements of the day'), where('monthAndYear', '==', date));
+  return await getDocs(q);
+  /*  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, ' => ', doc.data());
+  }); */
 };
 
 // Auth => autenticación (login, registro, etc)

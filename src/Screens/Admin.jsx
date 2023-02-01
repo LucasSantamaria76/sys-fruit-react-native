@@ -16,6 +16,7 @@ const Admin = () => {
             item.id === 2 && (uri = require(`../../assets/resumen.png`));
             item.id === 3 && (uri = require(`../../assets/CajaRegistradora.png`));
             item.id === 4 && (uri = require(`../../assets/calendario.png`));
+            item.id === 5 && (uri = require(`../../assets/resMensual.png`));
 
             return (
               <Center
